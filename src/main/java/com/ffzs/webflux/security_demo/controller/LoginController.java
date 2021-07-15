@@ -68,9 +68,8 @@ public class LoginController {
 //    @CrossOrigin
     @PostMapping("signup")
     public Mono<HttpResult> signUp (@RequestBody MyUser user) {
-
         return Mono.just(user)
-                .map(myUserService::save)
+                .flatMap(myUserService::save)
                 .map(it -> new HttpResult(HttpStatus.OK.value(), "注册成功", null))
                 .onErrorResume(e -> Mono.just(new HttpResult(HttpStatus.UNAUTHORIZED.value(), "注册失败", e)));
     }

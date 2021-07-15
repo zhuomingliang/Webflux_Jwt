@@ -31,6 +31,9 @@ public class MyUserDetails implements UserDetails {
     private String authorities;
 
 
+    public String toString() {
+        return "1111";
+    }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Stream.of(authorities.split(","))
